@@ -1,6 +1,10 @@
-<!DOCTYPE html>
 {% load static %}
 
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -109,6 +113,21 @@ $(document).ready(function () {
                             <li><a href="index-slider.htm">Slider Only</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catigories<b
+                                class="caret"></b></a>
+                        {% if cats %}
+                            <ul class="dropdown-menu">
+                                {% for cat in cats %}
+                                    <li>
+                                        <a href="{% url 'category' cat.slug %}">{{ cat.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+
                     {% if request.user.is_authenticated %}
                         <li class="dropdown active">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'login' %}">Post Qo'yish<b
@@ -163,9 +182,12 @@ $(document).ready(function () {
                     </li>
                     <li><a href="page-contact.htm">Contact</a></li>
                 </ul>
-
             </div>
-
+                    <form class="d-flex" method="get" action="{% url 'search' %}">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query"
+                               value="{{ request.GET.query }}">
+                        <button class="btn btn-danger" type="submit">Search</button>
+                    </form>
             <!-- Mobile Nav
             ================================================== -->
             <form action="#" id="mobile-nav" class="visible-phone">

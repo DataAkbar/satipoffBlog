@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Satipoff Page {% endblock %}
+
+
+{% block content %}
+
+	<div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+
+    <div class="container main-container">
+
+    <!-- Page Content
+    ================================================== -->
+    <div class="row">
+
+        <!-- Gallery Items
+        ================================================== -->
+        <div class="span12 gallery-single">
+
+            <div class="row">
+                {% if post.photo %}
+                    <div class="span6">
+                        <img src="{{ post.photo.url }}" class="align-left thumbnail" alt="image">
+                    </div>
+                {% endif %}
+                <div class="span6">
+                    <h2>{{ post.title }}</h2>
+                    <p class="lead">{{ post.author }}</p>
+                    <p>{{ post.text }}</p>
+
+                    <ul class="project-info">
+                        <li><h6>Date:</h6>{{ post.created_at }}</li>
+                        <li><h6>Client:</h6>{{ post.author }}</li>
+                        <li><h6>Services:</h6> Hozircha yo'q</li>
+                        <li><h6>Art Director:</h6>{{ post.author }}</li>
+                        <li><h6>Designer:</h6>{{ post.author }}</li>
+                    </ul>
+
+                    <button class="btn btn-inverse pull-left" type="button">Visit Website</button>
+                    <a href="{% url 'index' %}" class="pull-right"><i class="icon-arrow-left"></i>Back to Gallery</a>
+                </div>
+                 {% if request.user == post.author %}
+                    <a href="{% url 'editpost' post.id %}" class="btn btn-warning"><span class="bi bi-pencil-square"></span> Edit</a>
+                    <a href="{% url 'deletepost' post.id %}" class="btn btn-danger"><span class="bi bi-trash"></span> Delete</a>
+                 {% endif %}
+            </div>
+        </div><!-- End gallery-single-->
+
+    </div><!-- End container row -->
+
+    </div> <!-- End Container -->
+{% endblock %}

@@ -7,43 +7,45 @@
 {% block content %}
 
 <div class="container">
-    <div class="row headline"><!-- Begin Headline -->
+<!--    <div class="row headline">&lt;!&ndash; Begin Headline &ndash;&gt;-->
 
-        <!-- Slider Carousel
-       ================================================== -->
-        <div class="span8">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li><a href="gallery-single.htm"><img src="{% static 'img/porshe.jpg' %}"
-                                                          alt="slider"/></a></li>
-                    <li><a href="gallery-single.htm"><img src="{% static 'img/dodge.jpg' %}"/></a></li>
-                    <li><a href="gallery-single.htm"><img src="{% static 'img/kep.jpg' %}"/></a></li>
-                    <li><a href="gallery-single.htm"><img src="{% static 'img/bmw.jpg' %}"/></a></li>
-                    <li><a href="gallery-single.htm"><img src="{% static 'img/satipoff-logo.png' %}"/></a></li>
-                </ul>
-            </div>
-        </div>
+<!--        &lt;!&ndash; Slider Carousel-->
+<!--       ================================================== &ndash;&gt;-->
+<!--        <div class="span8">-->
+<!--            <div class="flexslider">-->
+<!--                <ul class="slides">-->
+<!--                    <li><a href="gallery-single.htm"><img src="{% static 'img/gallery/slider-img-1.jpg' %}"-->
+<!--                                                          alt="slider"/></a></li>-->
+<!--                    <li><a href="gallery-single.htm"><img src="{% static 'img/gallery/slider-img-1.jpg' %}"/></a></li>-->
+<!--                    <li><a href="gallery-single.htm"><img src="{% static 'img/gallery/slider-img-1.jpg' %}"/></a></li>-->
+<!--                    <li><a href="gallery-single.htm"><img src="{% static 'img/gallery/slider-img-1.jpg' %}"/></a></li>-->
+<!--                    <li><a href="gallery-single.htm"><img src="{% static 'img/gallery/slider-img-1.jpg' %}"/></a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <!-- Headline Text
-        ================================================== -->
-        <div class="span4">
-            <h3>Welcome to Piccolo. <br/>
-                A Big Theme in a Small Package.</h3>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium vulputate magna sit
-                amet blandit.</p>
-            <p>Cras rutrum, massa non blandit convallis, est lacus gravida enim, eu fermentum ligula orci et tortor. In
-                sit
-                amet nisl ac leo pulvinar molestie. Morbi blandit ultricies ultrices.</p>
-            <a href="#"><i class="icon-plus-sign"></i>Read More</a>
-        </div>
-    </div><!-- End Headline -->
+<!--        &lt;!&ndash; Headline Text-->
+<!--        ================================================== &ndash;&gt;-->
+<!--        <div class="span4">-->
+<!--            <h3>Welcome to Piccolo. <br/>-->
+<!--                A Big Theme in a Small Package.</h3>-->
+<!--            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium vulputate magna sit-->
+<!--                amet blandit.</p>-->
+<!--            <p>Cras rutrum, massa non blandit convallis, est lacus gravida enim, eu fermentum ligula orci et tortor. In-->
+<!--                sit-->
+<!--                amet nisl ac leo pulvinar molestie. Morbi blandit ultricies ultrices.</p>-->
+<!--            <a href="#"><i class="icon-plus-sign"></i>Read More</a>-->
+<!--        </div>-->
+<!--    </div>&lt;!&ndash; End Headline &ndash;&gt;-->
 
     <div class="row gallery-row"><!-- Begin Gallery Row -->
             <div class="span12">
                 <h5 class="title-bg">Recent Work
                     <small>That we are most proud of</small>
+
                     <button class="btn btn-mini btn-inverse hidden-phone" type="button">View Portfolio</button>
                 </h5>
+
                 <!-- Gallery Thumbnails
                 ================================================== -->
 
@@ -65,13 +67,12 @@
 
                                 <a href="{% url 'detail' i.pk %}"><img src="{{ i.photo.url }}"
                                                                        alt="Gallery"></a>
-                                <span class="project-details"><a href="{% url 'detail' i.pk %}">{{ i.title }}</a>{{ i.text|truncatewords:30 }}</span>
+                                <span class="project-details"><a href="{% url 'detail' i.pk %}">{{ i.title }}</a>{{ i.text|truncatewords:30| safe }}</span>
                                 {% endif %}
                             </li>
                         </ul>
                     {% endfor %}
                     </div>
-            {% include "blog/pagination.html" with page=posts %}
             </div>
         <div class="row"><!-- Begin Bottom Section -->
             <!-- Blog Preview
