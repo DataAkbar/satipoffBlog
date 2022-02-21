@@ -41,10 +41,24 @@ INSTALLED_APPS = [
     # Tashqi App
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+
     # My App
     'blog',
     'pages',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

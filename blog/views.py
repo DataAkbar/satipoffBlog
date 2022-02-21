@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from rest_framework import generics, permissions
+from .serializers import PostSerializer
 
 
 def index(request):
@@ -138,3 +140,15 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+
+class PostList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Blog.objects.all()
+    serializer_class = PostSerializer
+
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated,)    
+    queryset = Blog.objects.all()
+    serializer_class = PostSerializer

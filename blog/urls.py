@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import index, features, index_gallery, detail, add_post, edit_post, delete_post, search_post, category, registerUser, loginUser, logoutUser
+from .views import index, features, index_gallery, detail, add_post, edit_post, delete_post, search_post, category, registerUser, loginUser, logoutUser, PostList, PostDetail
+
 
 urlpatterns = [
     path('', index, name="index"),
+    path('<int:pk>/', PostDetail.as_view()),    
     path('post/<int:post_id>/', detail, name="detail"),
     path('addpost/', add_post, name="addpost"),
     path('editpost/<int:post_id>/', edit_post, name="editpost"),
